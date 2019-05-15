@@ -3,7 +3,7 @@
 # @Author: seair
 # @Date:   2019-05-14 22:46:00
 # @Last Modified by:   Seair
-# @Last Modified time: 2019-05-16 00:49:44
+# @Last Modified time: 2019-05-16 01:10:03
 
 import os
 import time
@@ -103,7 +103,7 @@ allMsg = [msg] + allMsg
 s = []
 for msg in allMsg:
 	# print(msg)
-	s.append('{} | {}kb | {} | {}'.format(msg['name'], msg['size'], msg['line'], msg['sum']))
+	s.append('{} | {}kb | {} | {} | [{}.txt]({} "{}")'.format(msg['name'], msg['size'], msg['line'], msg['sum'], msg['name'], 'http://im.s8cm.cn/{}.txt?attname='.format(msg['name']), msg['name']))
 	pass
 
 s = '\n'.join(s)
@@ -125,8 +125,8 @@ README = '''# QuestionBank
 
 ### 题库详细信息
 
-题库 | 大小 | 行数 | 题数
--|-|-|-
+题库 | 大小 | 行数 | 题数 | 下载
+-|-|-|-|-
 {}  
 
 
@@ -135,7 +135,7 @@ README = '''# QuestionBank
 
 可将题库下载到本地，PC端用记事本，安卓端推荐用[MT管理器](https://www.coolapk.com/apk/bin.mt.plus "With a Title")，酱可以边做题目边搜索  
 
-手机下载方式:点击右下角桌面版，点击你药下载的文件，会提示文件过大可直接下载
+探索更多便捷方法ing~~~
 
 ### 联系方式
 QQ 1328357049
