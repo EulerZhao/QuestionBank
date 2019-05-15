@@ -3,7 +3,7 @@
 # @Author: seair
 # @Date:   2019-05-14 22:46:00
 # @Last Modified by:   Seair
-# @Last Modified time: 2019-05-16 01:10:03
+# @Last Modified time: 2019-05-16 01:25:31
 
 import os
 import time
@@ -103,7 +103,9 @@ allMsg = [msg] + allMsg
 s = []
 for msg in allMsg:
 	# print(msg)
-	s.append('{} | {}kb | {} | {} | [{}.txt]({} "{}")'.format(msg['name'], msg['size'], msg['line'], msg['sum'], msg['name'], 'http://im.s8cm.cn/{}.txt?attname='.format(msg['name']), msg['name']))
+	s.append('[{}]({} "{}")| {}kb | {} | {}'.format(
+		msg['name'], 'http://im.s8cm.cn/{}.txt?attname='.format(msg['name']), msg['name'],
+		msg['size'], msg['line'], msg['sum']))
 	pass
 
 s = '\n'.join(s)
@@ -125,8 +127,10 @@ README = '''# QuestionBank
 
 ### 题库详细信息
 
-题库 | 大小 | 行数 | 题数 | 下载
--|-|-|-|-
+注：点击蓝色字体可下载  
+
+题库 | 大小 | 行数 | 题数
+-|-|-|-
 {}  
 
 
