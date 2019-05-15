@@ -4,7 +4,9 @@
 ### 说明
 本仓库致力于收集四川大学体育理论考试题目  
 
-最后更新时间: 2019-05-16 01:25:39  
+地址：[码云](https://gitee.com/cherry-l/QuestionBank "码云")-[Github](https://github.com/s8cm/QuestionBank "Github")
+
+最后更新时间: 2019-05-16 01:29:29  
 
 ***
 

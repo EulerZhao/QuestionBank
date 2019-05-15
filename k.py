@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # @Author: seair
 # @Date:   2019-05-14 22:46:00
-# @Last Modified by:   Seair
-# @Last Modified time: 2019-05-16 01:25:31
+# @Last Modified by:   seair
+# @Last Modified time: 2019-05-16 01:29:21
 
 import os
 import time
@@ -120,6 +120,8 @@ README = '''# QuestionBank
 
 ### 说明
 本仓库致力于收集四川大学体育理论考试题目  
+
+地址：[码云](https://gitee.com/cherry-l/QuestionBank "码云")-[Github](https://github.com/s8cm/QuestionBank "Github")
 
 最后更新时间: {}  
 
