@@ -6,7 +6,7 @@
 
 本仓库致力于收集四川大学体育理论考试题目  
 
-地址：[码云](https://gitee.com/cherry-l/QuestionBank "码云") or [Github](https://github.com/s8cm/QuestionBank "Github")
+地址：[码云](https://gitee.com/cherry-l/QuestionBank) or [Github](https://github.com/s8cm/QuestionBank)
 
 最后更新时间: 2019-05-16 01:29:29  
 
@@ -20,22 +20,22 @@
 
 题库 | 大小 | 行数 | 题数
 -|-|-|-
-2019-05-16 21:44:22  
+2019-05-16 21:49:58  
 
 
 * * *
 
 ### 使用帮助
 
-可将题库下载到本地，PC端用记事本，安卓端推荐用[MT管理器](https://www.coolapk.com/apk/bin.mt.plus "With a Title")，酱可以边做题目边搜索  
+可将题库下载到本地，PC端用记事本，安卓端推荐用[MT管理器](https://www.coolapk.com/apk/bin.mt.plus)，酱可以边做题目边搜索  
 
 本地搜索是最快的，当然也提供网页搜索：
 
-[在线搜索-1](http://i.s8cm.cn/ "i.") or [在线搜索-2](http://im.s8cm.cn/ "im.")
+[在线搜索-1](http://i.s8cm.cn/) or [在线搜索-2](http://im.s8cm.cn/)
 
 ### 联系方式
 
-QQ [1328357049](http://wpa.qq.com/msgrd?v=3&uin=1328357049&site=qq&menu=yes "QQ")  
+QQ [1328357049](http://wpa.qq.com/msgrd?v=3&uin=1328357049&site=qq&menu=yes)  
 
 ### 致谢
 
