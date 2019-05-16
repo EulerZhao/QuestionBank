@@ -3,7 +3,7 @@
 # @Author: seair
 # @Date:   2019-05-14 22:46:00
 # @Last Modified by:   Seair
-# @Last Modified time: 2019-05-16 21:56:56
+# @Last Modified time: 2019-05-16 22:24:09
 
 import os
 import time
@@ -102,13 +102,15 @@ allMsg = [msg] + allMsg
 
 s = []
 for msg in allMsg:
-	# print(msg)
-	s.append('[{}]({})| {}kb | {} | {}'.format(
+	it = '[{}]({}) | {}kb | {} | {}'.format(
 		msg['name'], 'http://im.s8cm.cn/{}.txt?attname='.format(msg['name']),
-		msg['size'], msg['line'], msg['sum']))
+		msg['size'], msg['line'], msg['sum'])
+	# print(it)
+	s.append(it)
 	pass
 
 s = '\n'.join(s)
+# print(s)
 
 Last = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
@@ -125,7 +127,7 @@ README = '''# QuestionBank
 
 地址：<a href="https://gitee.com/cherry-l/QuestionBank" target="_blank">码云</a> or <a href="https://github.com/s8cm/QuestionBank" target="_blank">Github</a>
 
-最后更新时间: 2019-05-16 01:29:29  
+最后更新时间: {} 
 
 请滑到底部查看使用帮助
 
