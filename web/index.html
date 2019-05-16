@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>题库在线搜索</title>
+    <link rel="shortcut icon" href="https://s2.ax1x.com/2019/05/16/Ebc10I.png">
+
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel='stylesheet' href='https://unpkg.com/nprogress@0.2.0/nprogress.css' />
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src='https://unpkg.com/nprogress@0.2.0/nprogress.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+    }
+
+    #wrapper {
+        min-height: 100%;
+        margin-bottom: -40px;
+    }
+
+    #footer {
+        height: 40px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+    }
+
+    ::-webkit-scrollbar-track-piece {
+        background-color: white;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+        background-color: #666;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+        background-color: #666;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+    }
+</style>
+
+<body>
+    <div id="wrapper" style="padding-top: 20px;">
+        <div class="col-lg-12">
+            <div class="input-group">
+                <input type="text" class="form-control" id="keywords" placeholder="酱输入题目的一部分">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="search" type="button">搜索</button>
+                </span>
+            </div>
+        </div>
+
+        <br>
+        <div style="margin-left: 20px;margin-right: 20px">
+            <span class="btn btn-default" id="empty" type="button">清除历史</span>
+        </div>
+        <br>
+        <div id="history" style="margin-left: 15px;margin-right: 15px;">
+            <!-- <p class="item">
+            来球从台面弹起到接近最高点这段过程称为“上升期”。上升期又可分为上升前期和上升后期。
+            <hr>
+        </p>
+        <p class="item">
+            siuvsuvuis  sui
+            <hr>
+        </p> -->
+
+        </div>
+    </div>
+
+    <div id="footer" style="text-align: center;">
+        <p>
+            时间不思考&copy;
+            <a href="https://gitee.com/cherry-l/QuestionBank" title="Gitee">Gitee </a>
+            or
+            <a href="https://github.com/s8cm/QuestionBank" title="Github"> Github</a>
+        </p>
+    </div>
+</body>
+<script>
+
+    function flashElment(id) {
+        $(id).fadeToggle(1000, function () {
+            $(id).fadeToggle(1000);
+        });
+    }
+
+    var historyList = [];
+
+    function addHistory(str) {
+        var p = document.createElement('p');
+        p.innerHTML = str + '<hr>';
+        p.style = 'display: none;';
+        p.className = 'answer';
+        p.id = historyList[0]['id'];
+        $('#history').prepend(p)
+        $(p).show(750);
+    }
+
+    function query(str) {
+        const str_ = str;
+        $.get('http://i.s8cm.cn/k.php?search=' + str, function (data, status) {
+            // alert("Data: " + data + "nStatus: " + status);
+            if (status == 'success' && data['code'] == 200) {
+                historyList.unshift({ 'msg': data['msg'], 'id': new Date().getTime() + '' });
+                var str = data['msg'].replace(/\n/g, "<br>");
+                addHistory(str);
+                console.log(data['msg']);
+            } else {
+                // alert('没有搜索到鸭');
+                historyList.unshift({ 'msg': str_, id: '' });
+                Swal.fire('Oops...', '没有搜索到鸭!', 'error');
+            }
+
+            NProgress.done();
+            NProgress.remove();
+        });
+    }
+
+    $('#empty').click(function () {
+        historyList = [];
+        $('#history').hide(1000, function () {
+            this.innerHTML = '';
+            $('#history').show();
+        });
+    }
+    );
+    $('#search').click(function () {
+        var keywords = $('#keywords').val();
+        if (keywords.length > 0) {
+            NProgress.start();
+            var isQuery = true;
+            for (var i = 0; i < historyList.length; i++) {
+                const data = historyList[i];
+                // console.log(data);
+                if (data['msg'].indexOf(keywords) != -1) {
+                    isQuery = false;
+                    const id = '#' + data['id'];
+                    $('html, body').animate({
+                        scrollTop: $(id).offset().top
+                    }, 500, function () {
+                        flashElment(id)
+                    });
+                    break;
+                }
+            }
+            if (isQuery) {
+                query(keywords);
+            } else {
+                NProgress.done();
+                NProgress.remove();
+            }
+
+        }
+    }
+    );
+
+</script>
+
+</html>
