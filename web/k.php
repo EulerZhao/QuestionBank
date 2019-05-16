@@ -18,7 +18,7 @@ if(isset($_GET['search'])){
 }
 
 
-$fileName = 'E:\Documents\Github\QuestionBank\总题库.txt';
+$fileName = './All.txt';
 if(!file_exists($fileName)){
     $response['msg'] = 'file not exist';
     echo(json_encode($response));
@@ -28,6 +28,8 @@ if(!file_exists($fileName)){
 
 // echo(substr($search, 0, strlen('甲1投篮')));
 $eof = '你的答案';
+$eof2 = '你未作答';
+$eof3 = '标准答案';
 $end = strlen($eof);
 
 // exit(0);
@@ -49,8 +51,12 @@ while (!feof($file)) {
         while (!feof($file)) {
             $content = fgets($file);
             $result .= $content;
-            if(isset($content[$end])&&substr($content, 0, $end)==$eof){
-                break;
+            if(isset($content[$end])){
+            	$slice = substr($content, 0, $end);
+            	if($slice==$eof || $slice==$eof2 || strpos($content, $eof3) !== false){
+            		break;
+            	}
+                
             }
         }
         break;
