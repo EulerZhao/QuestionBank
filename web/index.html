@@ -152,11 +152,13 @@
                 if (data['msg'].indexOf(keywords) != -1) {
                     isQuery = false;
                     const id = '#' + data['id'];
-                    $('html, body').animate({
-                        scrollTop: $(id).offset().top
-                    }, 500, function () {
-                        flashElment(id)
-                    });
+                    if (id!='#') {
+                        $('html, body').animate({
+                            scrollTop: $(id).offset().top
+                        }, 500, function () {
+                            flashElment(id)
+                        });
+                    }
                     break;
                 }
             }
