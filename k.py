@@ -84,6 +84,21 @@ for course in courses:
 		pass
 	allMsg.append(msg)
 	pass
+# 手工补充题库保留为独立源文件，重新汇总时一并合入。
+supplement_folder = './补充题库'
+if os.path.isdir(supplement_folder):
+	for filename in sorted(os.listdir(supplement_folder)):
+		path = os.path.join(supplement_folder, filename)
+		if not filename.endswith('.txt') or not os.path.isfile(path):
+			continue
+		with codecs.open(path, 'r', 'utf-8') as course:
+			count, lines = getAnswer(course)
+			AllQuestion.write(course.read())
+			AllQuestion.write("\n\n")
+		allMsg.append({'name': os.path.splitext(filename)[0] + '补充',
+		               'sum': count, 'line': lines, 'size': os.path.getsize(path)//1024,
+		               'link': path.replace('\\', '/')})
+
 AllQuestion.close()
 
 
@@ -103,7 +118,7 @@ allMsg = [msg] + allMsg
 s = []
 for msg in allMsg:
 	it = '[{}]({}) | {}kb | {} | {}'.format(
-		msg['name'], 'http://im.s8cm.cn/{}.txt?attname='.format(msg['name']),
+		msg['name'], msg.get('link', 'http://im.s8cm.cn/{}.txt?attname='.format(msg['name'])),
 		msg['size'], msg['line'], msg['sum'])
 	# print(it)
 	s.append(it)
@@ -143,6 +158,14 @@ README = '''# QuestionBank
 
 
 * * *
+
+### 补充题库
+
+[游泳补充题库](补充题库/游泳.txt)收录 2026-10-26 补充的 3 道题，已同步加入本仓库的[总题库](总题库.txt)。运行 `k.py` 重新汇总时，也会合并 `补充题库/` 下的 `.txt` 文件；上面的历史下载地址不会随本次提交自动更新。
+
+题干及选项来自四川大学体育理论考试页面。踩水姿势题的判卷页明确显示“你的答案：正确，标准答案：错误”，因此保留原始判卷记录；判卷页未说明错误原因。两块秒表计时题选 A（平均成绩），标准蛙泳配合题选 B（1 次划手、1 次蹬腿、1 次换气），依据本次作答及提交者“仅踩水姿势题答错”的反馈补录，这两题未单独取得判卷截图。
+
+检索答案时，记录中若同时含有“你的答案”和“标准答案”，以“标准答案”为准。新增文件不包含考生姓名、学号或屏幕截图。
 
 ### 使用帮助
 
